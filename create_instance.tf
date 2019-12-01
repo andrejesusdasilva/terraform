@@ -13,7 +13,7 @@ resource "aws_instance" "example" {
     type     = "ssh"
     user     = "ubuntu"
     host = "${self.public_ip}"
-	private_key = "${file("aws_local.pem")}"
+    private_key = "${file("aws_local.pem")}"
   } 
   
   #copying archive into the instance ec2
