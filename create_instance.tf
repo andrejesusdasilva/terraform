@@ -1,6 +1,6 @@
 resource "aws_instance" "example" {
   ami           = "${data.aws_ami.amazon-linux-2.id}"
-  instance_type = "t2.micro"
+  instance_type = "${var.instance_type}"
   count = 1
   key_name = "${aws_key_pair.key-pair.key_name}"
   security_groups = ["${aws_security_group.security_group_aws_andrej.id}"]
