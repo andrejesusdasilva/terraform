@@ -94,7 +94,7 @@ pipeline {
                     .inside(""){}
                }
 
-                //sh 'docker run -it -e AWS_ACCESS_KEY_ID=AKIAX5CVAFJHA54HFYVA -e AWS_SECRET_ACCESS_KEY=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 -v $(pwd):/workpace -w /workpace docker_terraform plan'
+                //sh 'docker run -it -e AWS_ACCESS_KEY_ID=xxxxxx -e AWS_SECRET_ACCESS_KEY=xxxxx -v $(pwd):/workpace -w /workpace docker_terraform plan'
                 //a imagem do terraform na documentação não esta clara, mas pode passar as credenciais
                 sh 'docker run -i -v $(pwd):/workpace -w /workpace hashicorp/terraform:0.11.14 init'
                 sh 'docker run -i -v $(pwd):/workpace -w /workpace hashicorp/terraform:0.11.14 plan -out=myfreetierplan -var-file=envs/freetier.tfvars'
