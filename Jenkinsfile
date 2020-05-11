@@ -60,29 +60,9 @@ pipeline {
            steps{
             script{
                 git branch: 'feature/terraform_aws', credentialsId: 'devops_usr', url: 'ssh://git@stash.matera.com:7999/~andrej/lab_localstack_terraform.git'
-
-                 sh 'pwd'
-                 //def file = readFile "envs/freetier.tfvars"
-                 def tfvarproperties = readProperties file: "envs/freetier.tfvars"
-                 //as variaveis seguem o padrão do terraform, onde é necessário usar as aspas, então foi 
-                 //necessário remover para fazer a comparação com as variaveis de ambiente
-                 println("Valores antigos: " + tfvarproperties)
-                 
-                 def newparams = params.toString()
-                 def tfvarpropertiesmodified = readProperties file: "envs/freetier.tfvars", text: newparams.replace("{","").replace("}","")
-                 println("Valores novos: " + tfvarpropertiesmodified)
-                 
-                 //println(tfvarproperties['nomebucket'].replace("\"",""))
-                 println(tfvarproperties)
-                 println(listParams)
-                 println(params)
-                 
-                 println("Reescrevendo o arquivo tfvars")
-                 
-                
             }
             
-           archiveArtifacts artifacts: 'envs/*.tfvars'       
+            archiveArtifacts artifacts: 'envs/*.tfvars'       
            }
        
         }
@@ -94,7 +74,7 @@ pipeline {
                     .inside(""){}
                }
 
-                //sh 'docker run -it -e AWS_ACCESS_KEY_ID=xxxxxx -e AWS_SECRET_ACCESS_KEY=xxxxx -v $(pwd):/workpace -w /workpace docker_terraform plan'
+                //sh 'docker run -it -e AWS_ACCESS_KEY_ID=xxxxx -e AWS_SECRET_ACCESS_KEY=xxxxx -v $(pwd):/workpace -w /workpace docker_terraform plan'
                 //a imagem do terraform na documentação não esta clara, mas pode passar as credenciais
                 sh 'docker run -i -v $(pwd):/workpace -w /workpace hashicorp/terraform:0.11.14 init'
                 sh 'docker run -i -v $(pwd):/workpace -w /workpace hashicorp/terraform:0.11.14 plan -out=myfreetierplan -var-file=envs/freetier.tfvars'
