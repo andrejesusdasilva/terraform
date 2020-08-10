@@ -7,6 +7,7 @@ resource "aws_instance" "example" {
   subnet_id = "${aws_subnet.subnet.id}"
   #user_data = "${file("install_apache.sh")}"
   #https://www.terraform.io/docs/providers/aws/r/internet_gateway.html
+  #teste integração atlantis
   depends_on = ["aws_internet_gateway.gwfreetier"]
     
   tags = {
