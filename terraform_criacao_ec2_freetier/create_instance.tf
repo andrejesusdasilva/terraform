@@ -34,6 +34,7 @@ resource "aws_instance" "example" {
   #}
   
  #installing java using provisioner
+ #modificação para teste do atlantis
  #provisioner "remote-exec" {
  #   inline = [
  #	  "sudo apt-get update",
