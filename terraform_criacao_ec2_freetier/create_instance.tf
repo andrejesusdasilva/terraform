@@ -27,6 +27,7 @@ resource "aws_instance" "example" {
   } 
   
   #copying archive into the instance ec2
+  #teste Atlantis
   #precisa ter permissão na ec2 para enviar os arquivos
   #provisioner "file" {
   # source      = "install_apache.sh"
